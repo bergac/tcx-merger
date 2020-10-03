@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.unbroken-dome.xjc' version '1.4.3'
+}
+
+group 'nl.annec'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 14
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+xjc {
+    includeInMainCompilation = true
+}
+
+xjcGenerate {
+    extension = true
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir xjcGenerate.outputDirectory
+        }
+    }
+}
+
+dependencies {
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+
+    compile 'com.sun.xml.bind:jaxb-impl:2.3.0'
+    compile 'com.sun.xml.bind:jaxb-core:2.3.0'
+
+    testCompile 'junit:junit:4.12'
+}
