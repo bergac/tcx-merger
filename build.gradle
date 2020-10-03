@@ -29,9 +29,18 @@ sourceSets {
     }
 }
 
-dependencies {
-    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+jar {
+    manifest {
+        attributes "Main-Class": "nl.bergac.tcxmerger.MainApplication"
+    }
 
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    compile 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
     compile 'com.sun.xml.bind:jaxb-impl:2.3.0'
     compile 'com.sun.xml.bind:jaxb-core:2.3.0'
 

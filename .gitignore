@@ -2,3 +2,4 @@
 .idea
 build
 *.tcx
+.DS_Store
